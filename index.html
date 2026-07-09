@@ -157,6 +157,14 @@
     clip-path: polygon(0 0, 100% 0, 100% 88%, 92% 100%, 0 100%);
   }
   .product-media svg{ width: 96px; height:96px; }
+  .media-placeholder{
+    color: rgba(255,255,255,0.75);
+    font-size: .85rem;
+    font-weight: 600;
+    background: rgba(0,0,0,0.15);
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
   .product-body{ padding: 20px 22px 26px; }
   .product-tag{ font-size:.75rem; color: var(--gold-light); font-weight:700; letter-spacing:.5px; }
   .product-card h3{ margin-top:6px; font-size: 1.2rem; }
@@ -245,16 +253,43 @@
   }
   .contact h2{ font-size: clamp(1.8rem,3.2vw,2.5rem); }
   .contact p{ color: var(--muted); max-width: 52ch; margin: 16px auto 30px; line-height:1.9; }
-  .contact-actions{ display:flex; gap: 18px; justify-content:center; flex-wrap:wrap; }
-  .btn-whatsapp{
-    background: linear-gradient(135deg, var(--emerald), #17624a);
-    padding: 15px 32px; border-radius: 999px; font-weight:900;
-    box-shadow: 0 10px 24px rgba(34,165,117,0.3);
+  .order-form{
+    max-width: 480px; margin: 0 auto; text-align: right;
+    display:flex; flex-direction:column; gap: 18px;
   }
-  .btn-insta{
-    background: linear-gradient(135deg, var(--ruby), var(--sapphire));
-    padding: 15px 32px; border-radius: 999px; font-weight:900;
+  .form-group{ display:flex; flex-direction:column; gap: 8px; }
+  .form-group label{ font-weight:700; font-size: .92rem; color: var(--gold-light); }
+  .form-group input, .form-group select{
+    background: var(--bg-card);
+    border: 1.5px solid rgba(247,234,216,0.2);
+    color: var(--cream);
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: .95rem;
+    outline: none;
+    transition: border-color .2s;
   }
+  .form-group select{ cursor:pointer; }
+  .form-group input:focus, .form-group select:focus{ border-color: var(--gold-light); }
+  .form-group select option{ background: var(--bg-card); color: var(--cream); }
+  .form-submit{
+    margin-top: 4px; border: none; cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+  }
+  .btn-order-yellow{
+    background: #ffcc00;
+    color: #241016;
+    font-weight: 900;
+    padding: 15px 30px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    box-shadow: 0 10px 24px rgba(255,204,0,0.35);
+    transition: transform .2s;
+    border: 3px solid #9c1f52;
+  }
+  .btn-order-yellow:hover{ transform: translateY(-2px); }
+  .form-note{ font-size: .8rem; color: var(--muted); text-align:center; }
  
   footer{
     padding: 40px 0; text-align:center; color: var(--muted); font-size:.85rem;
@@ -372,7 +407,7 @@
     <div class="products">
       <div class="product-card">
         <div class="product-media" style="background:linear-gradient(135deg,#9c1f52,#d6396f);">
-          <svg viewBox="0 0 64 64"><circle cx="32" cy="38" r="16" fill="none" stroke="#fff" stroke-width="4"/><polygon points="32,12 40,24 24,24" fill="#f0d372"/></svg>
+          <span class="media-placeholder">📷 الصورة قريبًا</span>
         </div>
         <div class="product-body">
           <span class="product-tag">خاتم</span>
@@ -386,7 +421,7 @@
       </div>
       <div class="product-card">
         <div class="product-media" style="background:linear-gradient(135deg,#17624a,#22a575);">
-          <svg viewBox="0 0 64 64"><path d="M14 16 Q32 42 50 16" fill="none" stroke="#fff" stroke-width="4"/><polygon points="32,36 40,48 24,48" fill="#f0d372"/></svg>
+          <span class="media-placeholder">📷 الصورة قريبًا</span>
         </div>
         <div class="product-body">
           <span class="product-tag">سلسلة</span>
@@ -400,7 +435,7 @@
       </div>
       <div class="product-card">
         <div class="product-media" style="background:linear-gradient(135deg,#2b4a9c,#3a6bd6);">
-          <svg viewBox="0 0 64 64"><rect x="10" y="26" width="44" height="12" rx="6" fill="none" stroke="#fff" stroke-width="4"/><circle cx="32" cy="32" r="6" fill="#f0d372"/></svg>
+          <span class="media-placeholder">📷 الصورة قريبًا</span>
         </div>
         <div class="product-body">
           <span class="product-tag">سوار</span>
@@ -476,11 +511,25 @@
     <div class="contact" id="contact">
       <span class="eyebrow">جاهزين نسمعو منك</span>
       <h2>عجبتك قطعة؟ خطوة وحدة تفصلك عليها</h2>
-      <p>راسلينا على واتساب أو انستغرام، وقولي لينا القطعة اللي عجبتك أو اشرحيلنا اللي تحلمي بيه، ونردو عليك بسرعة.</p>
-      <div class="contact-actions">
-        <a href="https://wa.me/213000000000" target="_blank" class="btn-whatsapp">راسلينا واتساب</a>
-        <a href="https://instagram.com" target="_blank" class="btn-insta">تابعينا انستغرام</a>
-      </div>
+      <p>عبّي المعلومات تحت وحنا نتواصلو معاك بخصوص طلبك.</p>
+      <form class="order-form" id="orderForm">
+        <div class="form-group">
+          <label for="fullName">الاسم واللقب</label>
+          <input type="text" id="fullName" name="fullName" placeholder="مثال: أمينة بلحاج" required>
+        </div>
+        <div class="form-group">
+          <label for="wilaya">الولاية</label>
+          <select id="wilaya" name="wilaya" required>
+            <option value="" disabled selected>اختاري ولايتك</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="phone">رقم الهاتف</label>
+          <input type="tel" id="phone" name="phone" placeholder="مثال: 0550123456" required>
+        </div>
+        <button type="submit" class="btn-order-yellow form-submit">اطلبي</button>
+        <p class="form-note" id="formNote">كي تكبسي "اطلبي"، غادي تتوجهي لواتساب باش تأكدي طلبك</p>
+      </form>
     </div>
   </section>
 </main>
@@ -592,7 +641,7 @@
       var names = beads.map(function(c){ return c.name; }).join('، ');
       msg = 'سلام، حبيت نطلب سوار مخصص من درّة بترتيب الألوان التالي: ' + names + ' (مجموع ' + beads.length + ' خرزة). شحال السعر ووقت التوصيل؟';
     }
-    orderBtn.href = 'https://wa.me/213000000000?text=' + encodeURIComponent(msg);
+    orderBtn.href = 'https://wa.me/213556562412?text=' + encodeURIComponent(msg);
     orderBtn.target = '_blank';
   }
  
@@ -601,6 +650,43 @@
  
   undoBtn.addEventListener('click', undoBead);
   clearBtn.addEventListener('click', clearBeads);
+})();
+ 
+// order form: 69 wilayas + submit handling
+(function(){
+  var WILAYAS = [
+    'أدرار','الشلف','الأغواط','أم البواقي','باتنة','بجاية','بسكرة','بشار','البليدة','البويرة',
+    'تمنراست','تبسة','تلمسان','تيارت','تيزي وزو','الجزائر','الجلفة','جيجل','سطيف','سعيدة',
+    'سكيكدة','سيدي بلعباس','عنابة','قالمة','قسنطينة','المدية','مستغانم','المسيلة','معسكر','ورقلة',
+    'وهران','البيض','إليزي','برج بوعريريج','بومرداس','الطارف','تندوف','تيسمسيلت','الوادي','خنشلة',
+    'سوق أهراس','تيبازة','ميلة','عين الدفلى','النعامة','عين تموشنت','غرداية','غليزان','تيميمون','برج باجي مختار',
+    'أولاد جلال','بني عباس','عين صالح','عين قزام','تقرت','جانت','المغير','المنيعة','أفلو','الأبيض سيدي الشيخ',
+    'العريشة','القنطرة','بريكة','بوسعادة','بئر العاتر','قصر البخاري','قصر الشلالة','عين وسارة','مسعد'
+  ];
+  var select = document.getElementById('wilaya');
+  WILAYAS.forEach(function(w, i){
+    var opt = document.createElement('option');
+    opt.value = w;
+    opt.textContent = (i + 1) + ' - ' + w;
+    select.appendChild(opt);
+  });
+ 
+  var form = document.getElementById('orderForm');
+  var note = document.getElementById('formNote');
+  var phoneInput = document.getElementById('phone');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('fullName').value.trim();
+    var wilaya = select.value;
+    var phone = phoneInput.value.trim();
+    if (!name || !wilaya || !phone) return;
+    var msg = 'سلام، حبيت نطلب من موقع درّة.' +
+      '\nالاسم واللقب: ' + name +
+      '\nالولاية: ' + wilaya +
+      '\nرقم الهاتف: ' + phone;
+    var waLink = 'https://wa.me/213556562412?text=' + encodeURIComponent(msg);
+    window.open(waLink, '_blank');
+  });
 })();
 </script>
 </body>
