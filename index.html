@@ -168,52 +168,6 @@
   .order-link{ font-size: .85rem; font-weight:700; color: var(--cream); opacity:.85; }
   .order-link:hover{ opacity:1; color: var(--gold-light); }
 
-  .builder-panel{
-    background: var(--bg-card);
-    border-radius: 24px;
-    border: 1px solid rgba(201,162,39,0.2);
-    padding: 46px 40px;
-    display:grid;
-    grid-template-columns: 1fr 1.05fr;
-    gap: 46px;
-    align-items:center;
-  }
-  .builder-preview{ display:flex; flex-direction:column; align-items:center; gap: 18px; }
-  .builder-preview svg{ width: 100%; max-width: 300px; }
-  .bead-count{ color: var(--muted); font-size: .95rem; }
-  .bead-count b{ color: var(--gold-light); }
-  .builder-controls h3{ font-size: 1.3rem; margin-bottom: 6px; }
-  .builder-controls > p{ color: var(--muted); margin-bottom: 22px; line-height: 1.8; }
-  .palette{
-    display:grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 26px;
-  }
-  .bead-swatch{
-    width: 100%; aspect-ratio: 1; border-radius: 50%;
-    border: 2px solid rgba(247,234,216,0.25);
-    cursor: pointer; position:relative;
-    transition: transform .15s, border-color .15s;
-    box-shadow: inset 0 3px 6px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.25);
-  }
-  .bead-swatch:hover{ transform: translateY(-3px) scale(1.06); border-color: var(--gold-light); }
-  .bead-swatch:active{ transform: translateY(0) scale(.96); }
-  .bead-swatch .swatch-label{
-    position:absolute; bottom:-22px; left:50%; transform:translateX(-50%);
-    font-size: .68rem; color: var(--muted); white-space:nowrap;
-  }
-  .builder-actions{ display:flex; gap:14px; flex-wrap:wrap; margin-top: 30px; }
-  .btn-undo, .btn-clear{
-    padding: 11px 20px; border-radius: 999px; font-weight:700; font-size: .9rem;
-    border: 1.5px solid rgba(247,234,216,0.3); transition:.2s;
-  }
-  .btn-undo:hover, .btn-clear:hover{ border-color: var(--gold-light); color: var(--gold-light); }
-  .builder-order{ margin-top: 26px; }
-  .sequence-tags{ display:flex; gap:8px; flex-wrap:wrap; margin: 16px 0 4px; min-height: 32px; }
-  .seq-tag{
-    width: 22px; height: 22px; border-radius: 50%;
-    border: 1.5px solid rgba(247,234,216,0.35);
-  }
-  .empty-hint{ color: var(--muted); font-size: .85rem; opacity:.7; }
-
   .girdle-divider{
     height: 26px;
     background:
@@ -306,7 +260,6 @@
     .categories{ grid-template-columns: repeat(2,1fr); }
     .products{ grid-template-columns: repeat(2,1fr); }
     .about{ grid-template-columns: 1fr; }
-    .builder-panel{ grid-template-columns: 1fr; padding: 34px 24px; }
     .nav-links{ display:none; }
     .menu-btn{ display:block; }
   }
@@ -329,7 +282,6 @@
     <nav class="nav-links">
       <a href="#categories">المجموعات</a>
       <a href="#products">القطع المميزة</a>
-      <a href="#builder">صممي سوارك</a>
       <a href="#about">قصتنا</a>
       <a href="#contact" class="nav-cta">اطلبي الآن</a>
     </nav>
@@ -417,7 +369,7 @@
           <p>فضة مطلية بالذهب مع حجر عنابي، تصميم رفيع يناسب كل يوم.</p>
           <div class="product-foot">
             <span class="price">3200 دج</span>
-            <a href="#contact" class="order-link">اطلبي ←</a>
+            <a href="#contact" class="order-link" data-product='خاتم "ياقوتة" - 3200 دج'>اطلبي ←</a>
           </div>
         </div>
       </div>
@@ -431,7 +383,7 @@
           <p>سلسلة ذهبية ناعمة مع دلاية حجر أخضر، تلمع بدون مبالغة.</p>
           <div class="product-foot">
             <span class="price">4500 دج</span>
-            <a href="#contact" class="order-link">اطلبي ←</a>
+            <a href="#contact" class="order-link" data-product='سلسلة "زمردة" - 4500 دج'>اطلبي ←</a>
           </div>
         </div>
       </div>
@@ -445,38 +397,8 @@
           <p>سوار رفيع بتفاصيل زرقاء، يتلبس لحاله ولا مع مجموعة.</p>
           <div class="product-foot">
             <span class="price">2800 دج</span>
-            <a href="#contact" class="order-link">اطلبي ←</a>
+            <a href="#contact" class="order-link" data-product='سوار "سماوي" - 2800 دج'>اطلبي ←</a>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="girdle-divider"></div>
-
-  <section id="builder" class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">تصميم حسب الطلب</span>
-      <h2>سوّي سوارك بالألوان اللي تحبيها</h2>
-      <p>اختاري ألوان الخرز واحدة بواحدة، وشوفي سوارك يتبنى قدامك مباشرة</p>
-    </div>
-    <div class="builder-panel">
-      <div class="builder-preview">
-        <svg id="braceletSvg" viewBox="0 0 300 300"></svg>
-        <p class="bead-count"><b id="beadCountLabel">0</b> / 16 خرزة</p>
-      </div>
-      <div class="builder-controls">
-        <h3>لوحة الألوان</h3>
-        <p>كبسي على أي لون باش تزيدي خرزة لسوارك (حتى 16 خرزة)</p>
-        <div class="palette" id="palette"></div>
-        <div class="builder-actions">
-          <button class="btn-undo" id="undoBtn">↩ تراجع</button>
-          <button class="btn-clear" id="clearBtn">🗑 مسحي الكل</button>
-        </div>
-        <div class="builder-order">
-          <span class="empty-hint" id="seqHint">مازال ما خترتيش أي لون</span>
-          <div class="sequence-tags" id="seqTags"></div>
-          <a href="#" id="orderBraceletBtn" class="btn-primary" style="display:inline-block; margin-top:14px;">اطلبي هذا التصميم عبر واتساب</a>
         </div>
       </div>
     </div>
@@ -520,6 +442,16 @@
         <input type="hidden" name="_next" value="https://ilyeeees01-alt.github.io/ilyes-w/thank-you.html">
         <input type="hidden" name="_captcha" value="false">
         <div class="form-group">
+          <label for="product">المنتوج المختار</label>
+          <select id="product" name="المنتوج المختار" required>
+            <option value="" disabled selected>اختاري المنتوج</option>
+            <option value='خاتم "ياقوتة" - 3200 دج'>خاتم "ياقوتة" - 3200 دج</option>
+            <option value='سلسلة "زمردة" - 4500 دج'>سلسلة "زمردة" - 4500 دج</option>
+            <option value='سوار "سماوي" - 2800 دج'>سوار "سماوي" - 2800 دج</option>
+            <option value="أخرى / استفسار عام">أخرى / استفسار عام</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="fullName">الاسم واللقب</label>
           <input type="text" id="fullName" name="الاسم واللقب" placeholder="مثال: أمينة بلحاج" required>
         </div>
@@ -552,113 +484,6 @@
 
 <script>
 (function(){
-  var BEAD_COLORS = [
-    { name: 'ذهبي',   hex: '#f0d372' },
-    { name: 'عنابي',  hex: '#d6396f' },
-    { name: 'زمردي',  hex: '#22a575' },
-    { name: 'سماوي',  hex: '#3a6bd6' },
-    { name: 'أرجواني', hex: '#8b5cf6' },
-    { name: 'وردي',   hex: '#f2a3c4' },
-    { name: 'فيروزي', hex: '#2dd4bf' },
-    { name: 'عاجي',   hex: '#f7ead8' },
-    { name: 'كهرماني', hex: '#e08a2b' },
-    { name: 'أسود',   hex: '#2b1c28' }
-  ];
-  var MAX_BEADS = 16;
-  var beads = [];
-
-  var paletteEl = document.getElementById('palette');
-  var svgEl = document.getElementById('braceletSvg');
-  var countLabel = document.getElementById('beadCountLabel');
-  var seqTagsEl = document.getElementById('seqTags');
-  var seqHintEl = document.getElementById('seqHint');
-  var undoBtn = document.getElementById('undoBtn');
-  var clearBtn = document.getElementById('clearBtn');
-  var orderBtn = document.getElementById('orderBraceletBtn');
-
-  function buildPalette(){
-    BEAD_COLORS.forEach(function(c){
-      var btn = document.createElement('button');
-      btn.className = 'bead-swatch';
-      btn.style.background = c.hex;
-      btn.setAttribute('aria-label', c.name);
-      btn.innerHTML = '<span class="swatch-label">' + c.name + '</span>';
-      btn.addEventListener('click', function(){ addBead(c); });
-      paletteEl.appendChild(btn);
-    });
-  }
-
-  function addBead(color){
-    if (beads.length >= MAX_BEADS) return;
-    beads.push(color);
-    render();
-  }
-  function undoBead(){
-    beads.pop();
-    render();
-  }
-  function clearBeads(){
-    beads = [];
-    render();
-  }
-
-  function renderBracelet(){
-    var cx = 150, cy = 150, ringR = 105, beadR = 16;
-    var svg = '<circle cx="' + cx + '" cy="' + cy + '" r="' + ringR + '" fill="none" stroke="rgba(247,234,216,0.15)" stroke-width="6" stroke-dasharray="2 10" stroke-linecap="round"/>';
-    var n = beads.length;
-    if (n > 0){
-      for (var i = 0; i < n; i++){
-        var angle = (Math.PI * 2 * i / n) - Math.PI/2;
-        var bx = cx + ringR * Math.cos(angle);
-        var by = cy + ringR * Math.sin(angle);
-        svg += '<circle cx="' + bx.toFixed(1) + '" cy="' + by.toFixed(1) + '" r="' + beadR + '" fill="' + beads[i].hex + '" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"/>';
-        svg += '<circle cx="' + (bx - 4).toFixed(1) + '" cy="' + (by - 4).toFixed(1) + '" r="4" fill="rgba(255,255,255,0.35)"/>';
-      }
-    }
-    svgEl.innerHTML = svg;
-  }
-
-  function renderSequence(){
-    seqTagsEl.innerHTML = '';
-    if (beads.length === 0){
-      seqHintEl.style.display = 'block';
-      return;
-    }
-    seqHintEl.style.display = 'none';
-    beads.forEach(function(c){
-      var d = document.createElement('div');
-      d.className = 'seq-tag';
-      d.style.background = c.hex;
-      d.title = c.name;
-      seqTagsEl.appendChild(d);
-    });
-  }
-
-  function render(){
-    countLabel.textContent = beads.length;
-    renderBracelet();
-    renderSequence();
-    undoBtn.disabled = beads.length === 0;
-    clearBtn.disabled = beads.length === 0;
-    var msg;
-    if (beads.length === 0){
-      msg = 'سلام، حبيت نصمم سوار خاص بيا من موقع درّة.';
-    } else {
-      var names = beads.map(function(c){ return c.name; }).join('، ');
-      msg = 'سلام، حبيت نطلب سوار مخصص من درّة بترتيب الألوان التالي: ' + names + ' (مجموع ' + beads.length + ' خرزة). شحال السعر ووقت التوصيل؟';
-    }
-    orderBtn.href = 'https://wa.me/213556562412?text=' + encodeURIComponent(msg);
-    orderBtn.target = '_blank';
-  }
-
-  buildPalette();
-  render();
-
-  undoBtn.addEventListener('click', undoBead);
-  clearBtn.addEventListener('click', clearBeads);
-})();
-
-(function(){
   var WILAYAS = [
     'أدرار','الشلف','الأغواط','أم البواقي','باتنة','بجاية','بسكرة','بشار','البليدة','البويرة',
     'تمنراست','تبسة','تلمسان','تيارت','تيزي وزو','الجزائر','الجلفة','جيجل','سطيف','سعيدة',
@@ -682,6 +507,16 @@
   form.addEventListener('submit', function(){
     submitBtn.disabled = true;
     submitBtn.textContent = 'جاري الإرسال...';
+  });
+})();
+
+(function(){
+  var productSelect = document.getElementById('product');
+  var orderLinks = document.querySelectorAll('.order-link[data-product]');
+  orderLinks.forEach(function(link){
+    link.addEventListener('click', function(){
+      productSelect.value = link.getAttribute('data-product');
+    });
   });
 })();
 </script>
