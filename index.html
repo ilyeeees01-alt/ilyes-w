@@ -36,7 +36,7 @@
   a{ color: inherit; text-decoration:none; }
   img{ max-width:100%; display:block; }
   .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 28px; }
- 
+
   /* faceted background texture */
   .facet-bg{
     position: fixed; inset:0; z-index:-1; pointer-events:none;
@@ -47,7 +47,7 @@
       radial-gradient(circle at 25% 85%, rgba(201,162,39,0.14), transparent 40%),
       var(--bg);
   }
- 
+
   /* header */
   header{
     position: sticky; top:0; z-index: 50;
@@ -74,7 +74,7 @@
     box-shadow: 0 6px 18px rgba(214,57,111,0.35);
   }
   .menu-btn{ display:none; background:none; border:none; color:var(--cream); font-size:1.6rem; }
- 
+
   /* hero */
   .hero{
     padding: 90px 0 60px;
@@ -106,7 +106,7 @@
     font-weight:700; transition:.2s;
   }
   .btn-ghost:hover{ border-color: var(--gold-light); color: var(--gold-light); }
- 
+
   .hero-gem{ position:relative; display:flex; justify-content:center; }
   .hero-gem svg{ width: 100%; max-width: 380px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45)); }
   .facet{ animation: shimmer 5s ease-in-out infinite; transform-origin:center; }
@@ -115,15 +115,15 @@
     50%{ opacity: 1; }
   }
   @media (prefers-reduced-motion: reduce){ .facet{ animation:none; } }
- 
+
   /* section titles */
   .section-head{ text-align:center; margin-bottom: 52px; }
   .section-head .eyebrow{ display:block; }
   .section-head h2{ font-size: clamp(1.8rem,3vw,2.4rem); color: var(--cream); }
   .section-head p{ color: var(--muted); margin-top: 10px; }
- 
+
   section{ padding: 80px 0; position: relative; }
- 
+
   /* categories - gem-cut cards */
   .categories{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
   .cat-card{
@@ -139,7 +139,7 @@
   .cat-icon{ width: 56px; height:56px; margin: 0 auto 18px; }
   .cat-card h3{ font-size: 1.15rem; color: var(--gold-light); margin-bottom:6px; }
   .cat-card p{ color: var(--muted); font-size: .9rem; }
- 
+
   /* products */
   .products{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   .product-card{
@@ -173,7 +173,7 @@
   .price{ font-weight:900; color: var(--gold-light); font-size: 1.05rem; }
   .order-link{ font-size: .85rem; font-weight:700; color: var(--cream); opacity:.85; }
   .order-link:hover{ opacity:1; color: var(--gold-light); }
- 
+
   /* bracelet builder */
   .builder-panel{
     background: var(--bg-card);
@@ -220,7 +220,7 @@
     border: 1.5px solid rgba(247,234,216,0.35);
   }
   .empty-hint{ color: var(--muted); font-size: .85rem; opacity:.7; }
- 
+
   /* zigzag divider = gem girdle motif */
   .girdle-divider{
     height: 26px;
@@ -229,7 +229,7 @@
       linear-gradient(-135deg, var(--bg-alt) 25%, transparent 25%) 0 0/26px 26px;
     opacity:.6;
   }
- 
+
   /* about / signature story */
   .about{
     display:grid; grid-template-columns: .9fr 1.1fr; gap: 50px; align-items:center;
@@ -241,7 +241,7 @@
   .stat-row{ display:flex; gap: 34px; margin-top: 28px; flex-wrap:wrap; }
   .stat b{ display:block; font-size: 1.6rem; color: var(--gold-light); font-family:'Reem Kufi',sans-serif; }
   .stat span{ color: var(--muted); font-size: .85rem; }
- 
+
   /* contact */
   .contact{
     background: var(--bg-alt);
@@ -290,13 +290,26 @@
   }
   .btn-order-yellow:hover{ transform: translateY(-2px); }
   .form-note{ font-size: .8rem; color: var(--muted); text-align:center; }
- 
+  .order-success{
+    max-width: 480px; margin: 0 auto; text-align:center;
+    padding: 20px 10px 4px;
+  }
+  .order-success .success-icon{
+    width: 60px; height:60px; border-radius:50%;
+    background: linear-gradient(135deg, var(--emerald), #17624a);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 1.8rem; color:#fff; margin: 0 auto 18px;
+  }
+  .order-success h3{ font-size: 1.3rem; color: var(--gold-light); margin-bottom: 10px; }
+  .order-success p{ color: var(--muted); line-height:1.8; }
+  .btn-order-yellow:disabled{ opacity:.6; cursor: not-allowed; transform:none; }
+
   footer{
     padding: 40px 0; text-align:center; color: var(--muted); font-size:.85rem;
     border-top: 1px solid rgba(201,162,39,0.15); margin-top: 30px;
   }
   footer .logo{ justify-content:center; margin-bottom: 12px; }
- 
+
   /* responsive */
   @media (max-width: 980px){
     .hero{ grid-template-columns: 1fr; padding-top: 50px; }
@@ -317,7 +330,7 @@
 </head>
 <body>
 <div class="facet-bg"></div>
- 
+
 <header>
   <div class="wrap nav">
     <div class="logo">
@@ -334,7 +347,7 @@
     <button class="menu-btn" aria-label="القائمة">☰</button>
   </div>
 </header>
- 
+
 <main>
   <section class="hero wrap">
     <div>
@@ -365,9 +378,9 @@
       </svg>
     </div>
   </section>
- 
+
   <div class="girdle-divider"></div>
- 
+
   <section id="categories" class="wrap">
     <div class="section-head">
       <span class="eyebrow">تسوقي حسب النوع</span>
@@ -397,7 +410,7 @@
       </div>
     </div>
   </section>
- 
+
   <section id="products" class="wrap">
     <div class="section-head">
       <span class="eyebrow">الأكثر طلبًا</span>
@@ -449,9 +462,9 @@
       </div>
     </div>
   </section>
- 
+
   <div class="girdle-divider"></div>
- 
+
   <section id="builder" class="wrap">
     <div class="section-head">
       <span class="eyebrow">تصميم حسب الطلب</span>
@@ -479,9 +492,9 @@
       </div>
     </div>
   </section>
- 
+
   <div class="girdle-divider"></div>
- 
+
   <section id="about" class="wrap">
     <div class="about">
       <div class="about-visual">
@@ -506,7 +519,7 @@
       </div>
     </div>
   </section>
- 
+
   <section class="wrap">
     <div class="contact" id="contact">
       <span class="eyebrow">جاهزين نسمعو منك</span>
@@ -527,13 +540,19 @@
           <label for="phone">رقم الهاتف</label>
           <input type="tel" id="phone" name="phone" placeholder="مثال: 0550123456" required>
         </div>
-        <button type="submit" class="btn-order-yellow form-submit">اطلبي</button>
-        <p class="form-note" id="formNote">كي تكبسي "اطلبي"، غادي تتوجهي لواتساب باش تأكدي طلبك</p>
+        <button type="submit" class="btn-order-yellow form-submit" id="submitBtn">اطلبي</button>
+        <p class="form-note" id="formNote">كي تعبي المعلومات وتكبسي "اطلبي"، الطلب يوصلنا مباشرة</p>
       </form>
+      <div class="order-success" id="orderSuccess" style="display:none;">
+        <div class="success-icon">✓</div>
+        <h3>تم إرسال طلبك بنجاح</h3>
+        <p>وصلنا طلبك وغادي نتواصلو معاك قريبًا لتأكيد التوصيل.</p>
+      </div>
     </div>
   </section>
 </main>
- 
+
+
 <footer>
   <div class="wrap">
     <div class="logo">
@@ -543,7 +562,7 @@
     <p>© 2026 درّة — مجوهرات مصنوعة بحب في الجزائر</p>
   </div>
 </footer>
- 
+
 <script>
 (function(){
   var BEAD_COLORS = [
@@ -560,7 +579,7 @@
   ];
   var MAX_BEADS = 16;
   var beads = [];
- 
+
   var paletteEl = document.getElementById('palette');
   var svgEl = document.getElementById('braceletSvg');
   var countLabel = document.getElementById('beadCountLabel');
@@ -569,7 +588,7 @@
   var undoBtn = document.getElementById('undoBtn');
   var clearBtn = document.getElementById('clearBtn');
   var orderBtn = document.getElementById('orderBraceletBtn');
- 
+
   function buildPalette(){
     BEAD_COLORS.forEach(function(c){
       var btn = document.createElement('button');
@@ -581,7 +600,7 @@
       paletteEl.appendChild(btn);
     });
   }
- 
+
   function addBead(color){
     if (beads.length >= MAX_BEADS) return;
     beads.push(color);
@@ -595,7 +614,7 @@
     beads = [];
     render();
   }
- 
+
   function renderBracelet(){
     var cx = 150, cy = 150, ringR = 105, beadR = 16;
     var svg = '<circle cx="' + cx + '" cy="' + cy + '" r="' + ringR + '" fill="none" stroke="rgba(247,234,216,0.15)" stroke-width="6" stroke-dasharray="2 10" stroke-linecap="round"/>';
@@ -611,7 +630,7 @@
     }
     svgEl.innerHTML = svg;
   }
- 
+
   function renderSequence(){
     seqTagsEl.innerHTML = '';
     if (beads.length === 0){
@@ -627,7 +646,7 @@
       seqTagsEl.appendChild(d);
     });
   }
- 
+
   function render(){
     countLabel.textContent = beads.length;
     renderBracelet();
@@ -644,14 +663,14 @@
     orderBtn.href = 'https://wa.me/213556562412?text=' + encodeURIComponent(msg);
     orderBtn.target = '_blank';
   }
- 
+
   buildPalette();
   render();
- 
+
   undoBtn.addEventListener('click', undoBead);
   clearBtn.addEventListener('click', clearBeads);
 })();
- 
+
 // order form: 69 wilayas + submit handling
 (function(){
   var WILAYAS = [
@@ -670,22 +689,44 @@
     opt.textContent = (i + 1) + ' - ' + w;
     select.appendChild(opt);
   });
- 
+
   var form = document.getElementById('orderForm');
   var note = document.getElementById('formNote');
   var phoneInput = document.getElementById('phone');
+  var submitBtn = document.getElementById('submitBtn');
+  var successBox = document.getElementById('orderSuccess');
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var name = document.getElementById('fullName').value.trim();
     var wilaya = select.value;
     var phone = phoneInput.value.trim();
     if (!name || !wilaya || !phone) return;
-    var msg = 'سلام، حبيت نطلب من موقع درّة.' +
-      '\nالاسم واللقب: ' + name +
-      '\nالولاية: ' + wilaya +
-      '\nرقم الهاتف: ' + phone;
-    var waLink = 'https://wa.me/213556562412?text=' + encodeURIComponent(msg);
-    window.open(waLink, '_blank');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'جاري الإرسال...';
+
+    fetch('https://formsubmit.co/ajax/ilyeeees01@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'طلب جديد من موقع درّة',
+        'الاسم واللقب': name,
+        'الولاية': wilaya,
+        'رقم الهاتف': phone
+      })
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(){
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+    })
+    .catch(function(){
+      note.textContent = 'صرا خطأ فالإرسال، حاولي مرة أخرى أو تواصلي معانا مباشرة.';
+      note.style.color = '#d6396f';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'اطلبي';
+    });
   });
 })();
 </script>
