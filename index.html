@@ -37,7 +37,6 @@
   img{ max-width:100%; display:block; }
   .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 28px; }
 
-  /* faceted background texture */
   .facet-bg{
     position: fixed; inset:0; z-index:-1; pointer-events:none;
     background:
@@ -48,7 +47,6 @@
       var(--bg);
   }
 
-  /* header */
   header{
     position: sticky; top:0; z-index: 50;
     background: rgba(35,17,31,0.85);
@@ -75,7 +73,6 @@
   }
   .menu-btn{ display:none; background:none; border:none; color:var(--cream); font-size:1.6rem; }
 
-  /* hero */
   .hero{
     padding: 90px 0 60px;
     display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
@@ -116,7 +113,6 @@
   }
   @media (prefers-reduced-motion: reduce){ .facet{ animation:none; } }
 
-  /* section titles */
   .section-head{ text-align:center; margin-bottom: 52px; }
   .section-head .eyebrow{ display:block; }
   .section-head h2{ font-size: clamp(1.8rem,3vw,2.4rem); color: var(--cream); }
@@ -124,7 +120,6 @@
 
   section{ padding: 80px 0; position: relative; }
 
-  /* categories - gem-cut cards */
   .categories{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
   .cat-card{
     background: var(--bg-card);
@@ -140,7 +135,6 @@
   .cat-card h3{ font-size: 1.15rem; color: var(--gold-light); margin-bottom:6px; }
   .cat-card p{ color: var(--muted); font-size: .9rem; }
 
-  /* products */
   .products{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
   .product-card{
     background: var(--bg-card);
@@ -174,7 +168,6 @@
   .order-link{ font-size: .85rem; font-weight:700; color: var(--cream); opacity:.85; }
   .order-link:hover{ opacity:1; color: var(--gold-light); }
 
-  /* bracelet builder */
   .builder-panel{
     background: var(--bg-card);
     border-radius: 24px;
@@ -221,7 +214,6 @@
   }
   .empty-hint{ color: var(--muted); font-size: .85rem; opacity:.7; }
 
-  /* zigzag divider = gem girdle motif */
   .girdle-divider{
     height: 26px;
     background:
@@ -230,7 +222,6 @@
     opacity:.6;
   }
 
-  /* about / signature story */
   .about{
     display:grid; grid-template-columns: .9fr 1.1fr; gap: 50px; align-items:center;
   }
@@ -242,7 +233,6 @@
   .stat b{ display:block; font-size: 1.6rem; color: var(--gold-light); font-family:'Reem Kufi',sans-serif; }
   .stat span{ color: var(--muted); font-size: .85rem; }
 
-  /* contact */
   .contact{
     background: var(--bg-alt);
     border-radius: 24px;
@@ -310,7 +300,6 @@
   }
   footer .logo{ justify-content:center; margin-bottom: 12px; }
 
-  /* responsive */
   @media (max-width: 980px){
     .hero{ grid-template-columns: 1fr; padding-top: 50px; }
     .hero-gem{ order:-1; max-width: 260px; margin: 0 auto; }
@@ -551,7 +540,6 @@
   </section>
 </main>
 
-
 <footer>
   <div class="wrap">
     <div class="logo">
@@ -670,7 +658,6 @@
   clearBtn.addEventListener('click', clearBeads);
 })();
 
-// order form: 69 wilayas + submit handling
 (function(){
   var WILAYAS = [
     'أدرار','الشلف','الأغواط','أم البواقي','باتنة','بجاية','بسكرة','بشار','البليدة','البويرة',
@@ -695,7 +682,6 @@
   form.addEventListener('submit', function(){
     submitBtn.disabled = true;
     submitBtn.textContent = 'جاري الإرسال...';
-    // form submits normally to FormSubmit, then redirects to thank-you.html
   });
 })();
 </script>
