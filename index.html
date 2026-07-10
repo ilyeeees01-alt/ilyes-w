@@ -134,9 +134,53 @@
     display:flex; align-items:center; justify-content:center;
     position: relative;
     clip-path: polygon(0 0, 100% 0, 100% 88%, 92% 100%, 0 100%);
+    background: linear-gradient(160deg, #2e1729, #1c0e18);
+    overflow: hidden;
   }
   .product-media svg{ width: 96px; height:96px; }
-  .product-media img{ width:100%; height:100%; object-fit:cover; }
+  .product-media img{
+    width:100%; height:100%; object-fit:contain;
+    cursor: zoom-in; transition: transform .3s ease;
+  }
+  .product-media img:hover{ transform: scale(1.04); }
+  .zoom-hint{
+    position:absolute; bottom:10px; left:10px;
+    background: rgba(35,17,31,0.75); color: var(--gold-light);
+    font-size: .72rem; font-weight:700; padding:5px 11px;
+    border-radius: 999px; pointer-events:none; opacity:0;
+    transition: opacity .2s; display:flex; align-items:center; gap:5px;
+  }
+  .product-media:hover .zoom-hint{ opacity:1; }
+
+  .lightbox{
+    position: fixed; inset:0; z-index: 999;
+    background: rgba(15,6,12,0.92);
+    display:flex; align-items:center; justify-content:center;
+    padding: 30px; opacity:0; visibility:hidden;
+    transition: opacity .25s ease;
+  }
+  .lightbox.active{ opacity:1; visibility:visible; }
+  .lightbox img{
+    max-width: 92vw; max-height: 88vh;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    transform: scale(.94);
+    transition: transform .25s ease;
+  }
+  .lightbox.active img{ transform: scale(1); }
+  .lightbox-close{
+    position: absolute; top: 22px; left: 26px;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(247,234,216,0.12); border: 1.5px solid rgba(247,234,216,0.3);
+    color: var(--cream); font-size: 1.4rem; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:.2s;
+  }
+  .lightbox-close:hover{ border-color: var(--gold-light); color: var(--gold-light); }
+  .lightbox-caption{
+    position:absolute; bottom: 26px; left:0; right:0; text-align:center;
+    color: var(--gold-light); font-weight:700; font-size: .95rem;
+  }
   .media-placeholder{
     color: rgba(255,255,255,0.75);
     font-size: .85rem;
@@ -352,6 +396,7 @@
       <div class="product-card">
         <div class="product-media">
           <img src="images/khatem-yakouta.jpg" alt='خاتم "ياقوتة"'>
+        <span class="zoom-hint">🔍 كبري</span>
         </div>
         <div class="product-body">
           <span class="product-tag">خاتم</span>
@@ -366,6 +411,7 @@
       <div class="product-card">
         <div class="product-media">
           <img src="images/silsila-zomorroda.jpg" alt='سلسلة "زمردة"'>
+        <span class="zoom-hint">🔍 كبري</span>
         </div>
         <div class="product-body">
           <span class="product-tag">سلسلة</span>
@@ -380,6 +426,7 @@
       <div class="product-card">
         <div class="product-media">
           <img src="images/siwar-samawi.jpg" alt='سوار "سماوي"'>
+        <span class="zoom-hint">🔍 كبري</span>
         </div>
         <div class="product-body">
           <span class="product-tag">سوار</span>
@@ -394,6 +441,7 @@
       <div class="product-card">
         <div class="product-media">
           <img src="images/tqm-kahraman.jpg" alt='طقم "كهرمان"'>
+        <span class="zoom-hint">🔍 كبري</span>
         </div>
         <div class="product-body">
           <span class="product-tag">طقم كامل</span>
@@ -513,6 +561,12 @@
   </div>
 </footer>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="غلق">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+  <p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
+
 <script>
 (function(){
   var WILAYAS = [
@@ -548,6 +602,37 @@
     link.addEventListener('click', function(){
       productSelect.value = link.getAttribute('data-product');
     });
+  });
+})();
+
+(function(){
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxCaption = document.getElementById('lightboxCaption');
+  var closeBtn = document.getElementById('lightboxClose');
+  var productImgs = document.querySelectorAll('.product-media img');
+
+  function openLightbox(img){
+    lightboxImg.src = img.getAttribute('src');
+    lightboxImg.alt = img.getAttribute('alt') || '';
+    lightboxCaption.textContent = img.getAttribute('alt') || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  productImgs.forEach(function(img){
+    img.addEventListener('click', function(){ openLightbox(img); });
+  });
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeLightbox();
   });
 })();
 </script>
