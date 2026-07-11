@@ -103,6 +103,14 @@
     font-weight:700; transition:.2s;
   }
   .btn-ghost:hover{ border-color: var(--gold-light); color: var(--gold-light); }
+  .btn-whatsapp-hero{
+    background: linear-gradient(135deg, #25D366, #128C4A);
+    color: #fff; font-weight:900; padding: 14px 38px; border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(37,211,102,0.35);
+    transition: transform .2s;
+    display:flex; align-items:center; gap:10px;
+  }
+  .btn-whatsapp-hero:hover{ transform: translateY(-2px); }
 
   .hero-gem{ position:relative; display:flex; justify-content:center; }
   .hero-gem svg{ width: 100%; max-width: 380px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45)); }
@@ -284,6 +292,43 @@
   }
   footer .logo{ justify-content:center; margin-bottom: 12px; }
 
+  .whatsapp-float{
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 200;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25D366, #128C4A);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 26px rgba(37,211,102,0.45);
+    transition: transform .2s;
+  }
+  .whatsapp-float:hover{ transform: scale(1.08); }
+  .whatsapp-float svg{ width: 30px; height: 30px; }
+  .whatsapp-tooltip{
+    position: absolute;
+    right: 68px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-card);
+    color: var(--cream);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: .82rem;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s;
+    border: 1px solid rgba(201,162,39,0.25);
+  }
+  .whatsapp-float:hover .whatsapp-tooltip{ opacity: 1; }
+  @media (max-width: 560px){
+    .whatsapp-float{ width: 52px; height: 52px; bottom: 18px; left: 18px; }
+    .whatsapp-float svg{ width: 26px; height: 26px; }
+  }
+
   @media (max-width: 980px){
     .hero{ grid-template-columns: 1fr; padding-top: 50px; }
     .hero-gem{ order:-1; max-width: 260px; margin: 0 auto; }
@@ -345,6 +390,10 @@
       <h1>كل قطعة عندها <span>حكاية</span>، وكل لمعة تشبهك</h1>
       <p>عند درّة، نختارو كل خاتم وسلسلة وسوار بعناية، مواد أصيلة وتشطيب دقيق، باش توصل لك قطعة تلبسيها بثقة في كل مناسبة.</p>
       <div class="hero-actions">
+        <a href="https://wa.me/213556562412" target="_blank" class="btn-whatsapp-hero">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2.004 6.482 2.004 12c0 1.85.5 3.58 1.377 5.07L2 22l5.06-1.36A9.933 9.933 0 0 0 12.004 22C17.522 22 22 17.518 22 12S17.522 2 12.004 2zm0 18.09c-1.65 0-3.2-.462-4.514-1.263l-.324-.194-3.007.808.804-2.93-.211-.302A8.087 8.087 0 0 1 3.913 12c0-4.463 3.63-8.09 8.091-8.09 4.462 0 8.09 3.627 8.09 8.09 0 4.464-3.628 8.09-8.09 8.09z"/></svg>
+          تواصل معنا واتساب
+        </a>
         <a href="#products" class="btn-primary">شوفي المجموعة</a>
         <a href="#contact" class="btn-ghost">تواصلي معانا</a>
       </div>
@@ -758,6 +807,14 @@
     <p>© 2026 درّة — مجوهرات مصنوعة بحب في الجزائر</p>
   </div>
 </footer>
+
+<a href="https://wa.me/213556562412" target="_blank" class="whatsapp-float" aria-label="تواصل معنا عبر واتساب">
+  <span class="whatsapp-tooltip">تواصل معنا</span>
+  <svg viewBox="0 0 24 24" fill="#fff">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.004 2C6.486 2 2.004 6.482 2.004 12c0 1.85.5 3.58 1.377 5.07L2 22l5.06-1.36A9.933 9.933 0 0 0 12.004 22C17.522 22 22 17.518 22 12S17.522 2 12.004 2zm0 18.09c-1.65 0-3.2-.462-4.514-1.263l-.324-.194-3.007.808.804-2.93-.211-.302A8.087 8.087 0 0 1 3.913 12c0-4.463 3.63-8.09 8.091-8.09 4.462 0 8.09 3.627 8.09 8.09 0 4.464-3.628 8.09-8.09 8.09z"/>
+  </svg>
+</a>
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose" aria-label="غلق">&times;</button>
