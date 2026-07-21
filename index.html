@@ -137,6 +137,19 @@
     transition: transform .3s;
   }
   .product-card:hover{ transform: translateY(-6px); }
+  .product-card{
+    opacity: 0;
+    transform: translateY(55px) scale(.92);
+    transition: opacity .7s cubic-bezier(.34,1.56,.64,1), transform .7s cubic-bezier(.34,1.56,.64,1);
+  }
+  .product-card.in-view{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  .product-card.in-view:hover{ transform: translateY(-6px) scale(1.015); }
+  @media (prefers-reduced-motion: reduce){
+    .product-card{ opacity:1; transform:none; transition:none; }
+  }
   .product-media{
     position: relative;
     clip-path: polygon(0 0, 100% 0, 100% 88%, 92% 100%, 0 100%);
@@ -980,6 +993,45 @@
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape') closeLightbox();
   });
+})();
+(function(){
+  var cards = document.querySelectorAll('.product-card');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry, i){
+      if (entry.isIntersecting){
+        var el = entry.target;
+        var siblings = Array.prototype.slice.call(el.parentNode.children);
+        var idx = siblings.indexOf(el);
+        el.style.transitionDelay = (idx % 3) * 0.08 + 's';
+        el.classList.add('in-view');
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  cards.forEach(function(card){ observer.observe(card); });
+
+  // subtle parallax on product images while scrolling
+  var mediaImgs = document.querySelectorAll('.product-media img');
+  var ticking = false;
+  function updateParallax(){
+    var vh = window.innerHeight;
+    mediaImgs.forEach(function(img){
+      var rect = img.parentElement.getBoundingClientRect();
+      var center = rect.top + rect.height / 2;
+      var offset = (center - vh / 2) / vh; // -0.5 .. 0.5 roughly
+      var translate = Math.max(-14, Math.min(14, offset * -18));
+      img.style.transform = 'translateY(' + translate.toFixed(1) + 'px) scale(1.06)';
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking){
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+  updateParallax();
 })();
 </script>
 </body>
