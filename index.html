@@ -203,6 +203,35 @@
   .price{ font-weight:900; color: var(--gold-light); font-size: 1.05rem; }
   .order-link{ font-size: .85rem; font-weight:700; color: var(--cream); opacity:.85; }
   .order-link:hover{ opacity:1; color: var(--gold-light); }
+  .qty-stepper{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .qty-btn{
+    width:28px; height:28px; border-radius:50%;
+    border:1.5px solid rgba(247,234,216,0.3); background:transparent;
+    color: var(--cream); font-size:1rem; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:.2s;
+  }
+  .qty-btn:hover{ border-color: var(--gold-light); color: var(--gold-light); }
+  .qty-value{ min-width:22px; text-align:center; font-weight:800; color: var(--cream); }
+  .qty-label{ font-size:.78rem; color: var(--muted); }
+  .cart-box{
+    background: var(--bg-card);
+    border: 1.5px solid rgba(247,234,216,0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .cart-empty{ color: var(--muted); font-size: .85rem; line-height:1.7; margin:0; }
+  .cart-item{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px; padding: 8px 0; border-bottom: 1px solid rgba(247,234,216,0.08);
+  }
+  .cart-item:last-child{ border-bottom:none; }
+  .cart-item-name{ font-size: .88rem; color: var(--cream); }
+  .cart-item-price{ font-size: .85rem; color: var(--gold-light); font-weight:700; white-space:nowrap; }
+  .cart-item-remove{
+    background:none; border:none; color: var(--ruby); font-size: 1.1rem;
+    cursor:pointer; padding: 0 4px; line-height:1;
+  }
+  .cart-item-remove:hover{ color: var(--ruby-deep); }
 
   .girdle-divider{
     height: 26px;
@@ -270,6 +299,19 @@
   }
   .btn-order-yellow:hover{ transform: translateY(-2px); }
   .form-note{ font-size: .8rem; color: var(--muted); text-align:center; }
+  .total-price-box{
+    background: var(--bg-card);
+    border: 1.5px solid rgba(201,162,39,0.35);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: .92rem;
+    color: var(--cream);
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .total-row{ display:flex; align-items:center; justify-content:space-between; }
+  .total-row b{ color: var(--cream); font-size: .95rem; }
+  .total-row-final{ border-top: 1px solid rgba(247,234,216,0.15); padding-top:8px; margin-top:2px; }
+  .total-row-final b{ color: var(--gold-light); font-size: 1.25rem; }
   .order-success{
     max-width: 480px; margin: 0 auto; text-align:center;
     padding: 20px 10px 4px;
@@ -444,7 +486,7 @@
           <p>سلسلة وسوار متناسقين بخرز أميثيست بنفسجي وحجر عنبري دافئ، مزينين بميدالية ذهبية شكل قطعة نقدية عتيقة.</p>
           <div class="product-foot">
             <span class="price">2900 دج</span>
-            <a href="#contact" class="order-link" data-product='طقم "أميثيست" - 2900 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='طقم "أميثيست"' data-price="2900">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -459,7 +501,7 @@
           <p>سلسلة، سوارين، وحلقان بلؤلؤ أبيض وحجر كهرماني دافئ، طقم متكامل بلمسة طبيعية أنيقة.</p>
           <div class="product-foot">
             <span class="price">1900 دج</span>
-            <a href="#contact" class="order-link" data-product='طقم "كهرمان" - 1900 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='طقم "كهرمان"' data-price="1900">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -474,7 +516,7 @@
           <p>سلسلة، سوار، وحلقان بخرز كريستالي أحمر لامع مع تفاصيل ذهبية، طقم متكامل بإطلالة جريئة وأنيقة.</p>
           <div class="product-foot">
             <span class="price">1300 دج</span>
-            <a href="#contact" class="order-link" data-product='طقم "ياقوت الأحمر" - 1300 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='طقم "ياقوت الأحمر"' data-price="1300">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -489,7 +531,7 @@
           <p>سلسلة وسوار لؤلؤ ذهبي بتصميم حلقات متتالية أنيق.</p>
           <div class="product-foot">
             <span class="price">1600 دج</span>
-            <a href="#contact" class="order-link" data-product='طقم "أميرة اللؤلؤ" - 1600 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='طقم "أميرة اللؤلؤ"' data-price="1600">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -504,7 +546,7 @@
           <p>سلسلة ذهبية بخرز فيروزي مع دلاية فراشة لامعة.</p>
           <div class="product-foot">
             <span class="price">1000 دج</span>
-            <a href="#contact" class="order-link" data-product='سلسلة "فراشة الفيروز" - 1000 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='سلسلة "فراشة الفيروز"' data-price="1000">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -519,7 +561,7 @@
           <p>سلسلة ذهبية بأحجار شفافة لامعة ودلاية فراشة مرصعة.</p>
           <div class="product-foot">
             <span class="price">1000 دج</span>
-            <a href="#contact" class="order-link" data-product='سلسلة "فراشة الألماس" - 1000 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='سلسلة "فراشة الألماس"' data-price="1000">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -534,7 +576,7 @@
           <p>سلسلة وسوار وحلقان بزهور صفراء وخضراء، إطلالة ربيعية منعشة.</p>
           <div class="product-foot">
             <span class="price">1500 دج</span>
-            <a href="#contact" class="order-link" data-product='طقم "أقحوان" - 1500 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='طقم "أقحوان"' data-price="1500">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -549,7 +591,7 @@
           <p>سلسلة ذهبية بحجر أونيكس أسود لامع مع لمسات كريستالية.</p>
           <div class="product-foot">
             <span class="price">900 دج</span>
-            <a href="#contact" class="order-link" data-product='سلسلة "أونيكس الليل" - 900 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='سلسلة "أونيكس الليل"' data-price="900">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -564,7 +606,7 @@
           <p>سلسلة ذهبية بأحجار شفافة متلألئة على طول السلسلة.</p>
           <div class="product-foot">
             <span class="price">900 دج</span>
-            <a href="#contact" class="order-link" data-product='سلسلة "بريق الألماس" - 900 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='سلسلة "بريق الألماس"' data-price="900">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -579,7 +621,7 @@
           <p>سلسلة وسوار بأحجار طبيعية بألوان الفيروز والأخضر، ملهمة من البحر.</p>
           <div class="product-foot">
             <span class="price">1600 دج</span>
-            <a href="#contact" class="order-link" data-product='طقم "المحيط" - 1600 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='طقم "المحيط"' data-price="1600">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -594,7 +636,7 @@
           <p>سوار يد بخرز يمتد للإصبع، متوفر بلونين (وردي ولؤلؤي).</p>
           <div class="product-foot">
             <span class="price">400 دج</span>
-            <a href="#contact" class="order-link" data-product='سوار اليد "لؤلؤة الأصابع" - 400 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='سوار اليد "لؤلؤة الأصابع"' data-price="400">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -609,7 +651,7 @@
           <p>سلسلة مزدوجة بخرز بنفسجي وخوخي ودلاية فراشة.</p>
           <div class="product-foot">
             <span class="price">2000 دج</span>
-            <a href="#contact" class="order-link" data-product='سلسلة "فراشة الخريف" - 2000 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='سلسلة "فراشة الخريف"' data-price="2000">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -624,7 +666,7 @@
           <p>سلسلة وسوار وحلقان بخرز ملون ولؤلؤ، إطلالة مرحة وحيوية.</p>
           <div class="product-foot">
             <span class="price">1500 دج</span>
-            <a href="#contact" class="order-link" data-product='طقم "قوس قزح" - 1500 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='طقم "قوس قزح"' data-price="1500">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -639,7 +681,7 @@
           <p>طقم من 4 أساور بألوان مختلفة (أصفر، أحمر، فيروزي، بنفسجي).</p>
           <div class="product-foot">
             <span class="price">1200 دج</span>
-            <a href="#contact" class="order-link" data-product='أساور "الألوان الأربعة" - 1200 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='أساور "الألوان الأربعة"' data-price="1200">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -654,7 +696,7 @@
           <p>سلسلة وسوار وحلقان بخرز وردي ودلاية قطعة نقدية ذهبية عتيقة.</p>
           <div class="product-foot">
             <span class="price">2000 دج</span>
-            <a href="#contact" class="order-link" data-product='طقم "قطعة الملكة" - 2000 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='طقم "قطعة الملكة"' data-price="2000">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -669,7 +711,7 @@
           <p>سلسلة وسوار وحلقان لؤلؤ كلاسيكي بلمسات ذهبية.</p>
           <div class="product-foot">
             <span class="price">1500 دج</span>
-            <a href="#contact" class="order-link" data-product='طقم "لؤلؤة الفجر" - 1500 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='طقم "لؤلؤة الفجر"' data-price="1500">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -684,7 +726,7 @@
           <p>طقم من 5 أساور خرز بتصميم زهور ملونة (بنفسجي، أصفر، أحمر، عنابي، أزرق).</p>
           <div class="product-foot">
             <span class="price">900 دج</span>
-            <a href="#contact" class="order-link" data-product='أساور "زهور الصيف" - 900 دج'>اطلبي ←</a>
+            <a href="#contact" class="order-link" data-name='أساور "زهور الصيف"' data-price="900">أضيفي للطلب +</a>
           </div>
         </div>
       </div>
@@ -737,28 +779,11 @@
         <input type="hidden" name="redirect" value="https://ilyeeees01-alt.github.io/ilyes-w/thank-you.html">
         <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
         <div class="form-group">
-          <label for="product">المنتوج المختار</label>
-          <select id="product" name="المنتوج المختار" required>
-            <option value="" disabled selected>اختاري المنتوج</option>
-            <option value='طقم "أميثيست" - 2900 دج'>طقم "أميثيست" - 2900 دج</option>
-            <option value='طقم "كهرمان" - 1900 دج'>طقم "كهرمان" - 1900 دج</option>
-            <option value='طقم "ياقوت الأحمر" - 1300 دج'>طقم "ياقوت الأحمر" - 1300 دج</option>
-            <option value='طقم "أميرة اللؤلؤ" - 1600 دج'>طقم "أميرة اللؤلؤ" - 1600 دج</option>
-            <option value='سلسلة "فراشة الفيروز" - 1000 دج'>سلسلة "فراشة الفيروز" - 1000 دج</option>
-            <option value='سلسلة "فراشة الألماس" - 1000 دج'>سلسلة "فراشة الألماس" - 1000 دج</option>
-            <option value='طقم "أقحوان" - 1500 دج'>طقم "أقحوان" - 1500 دج</option>
-            <option value='سلسلة "أونيكس الليل" - 900 دج'>سلسلة "أونيكس الليل" - 900 دج</option>
-            <option value='سلسلة "بريق الألماس" - 900 دج'>سلسلة "بريق الألماس" - 900 دج</option>
-            <option value='طقم "المحيط" - 1600 دج'>طقم "المحيط" - 1600 دج</option>
-            <option value='سوار اليد "لؤلؤة الأصابع" - 400 دج'>سوار اليد "لؤلؤة الأصابع" - 400 دج</option>
-            <option value='سلسلة "فراشة الخريف" - 2000 دج'>سلسلة "فراشة الخريف" - 2000 دج</option>
-            <option value='طقم "قوس قزح" - 1500 دج'>طقم "قوس قزح" - 1500 دج</option>
-            <option value='أساور "الألوان الأربعة" - 1200 دج'>أساور "الألوان الأربعة" - 1200 دج</option>
-            <option value='طقم "قطعة الملكة" - 2000 دج'>طقم "قطعة الملكة" - 2000 دج</option>
-            <option value='طقم "لؤلؤة الفجر" - 1500 دج'>طقم "لؤلؤة الفجر" - 1500 دج</option>
-            <option value='أساور "زهور الصيف" - 900 دج'>أساور "زهور الصيف" - 900 دج</option>
-            <option value="أخرى / استفسار عام">أخرى / استفسار عام</option>
-          </select>
+          <label>المنتجات المطلوبة</label>
+          <div class="cart-box" id="cartBox">
+            <p class="cart-empty" id="cartEmpty">مازال ما زدتيش أي منتوج — كبسي "أضيفي للطلب" فأي بطاقة منتوج فوق</p>
+            <div id="cartItems"></div>
+          </div>
         </div>
         <div class="form-group">
           <label for="fullName">الاسم واللقب</label>
@@ -774,8 +799,15 @@
           <label for="phone">رقم الهاتف</label>
           <input type="tel" id="phone" name="رقم الهاتف" placeholder="مثال: 0550123456" required>
         </div>
+        <input type="hidden" name="المنتجات المطلوبة" id="cartField" value="">
+        <input type="hidden" name="السعر الإجمالي" id="totalPriceField" value="">
+        <div class="total-price-box" id="totalPriceBox" style="display:none;">
+          <div class="total-row"><span>المجموع الفرعي:</span><b id="subtotalLabel">0 دج</b></div>
+          <div class="total-row"><span>التوصيل:</span><b>400 دج</b></div>
+          <div class="total-row total-row-final"><span>المجموع الكلي:</span><b id="totalPriceLabel">0 دج</b></div>
+        </div>
         <button type="submit" class="btn-order-yellow form-submit" id="submitBtn">اطلبي</button>
-        <p class="form-note" id="formNote">كي تعبي المعلومات وتكبسي "اطلبي"، الطلب يوصلنا مباشرة</p>
+        <p class="form-note" id="formNote">زيدي منتوج وحد ولا أكثر، عبّي المعلومات، وكبسي "اطلبي"</p>
       </form>
     </div>
   </section>
@@ -842,20 +874,81 @@
   var form = document.getElementById('orderForm');
   var submitBtn = document.getElementById('submitBtn');
 
-  form.addEventListener('submit', function(){
+  form.addEventListener('submit', function(e){
+    var cartField = document.getElementById('cartField');
+    if (!cartField.value){
+      e.preventDefault();
+      alert('زيدي منتوج وحد على الأقل قبل ما تبعتي الطلب 🙏');
+      return;
+    }
     submitBtn.disabled = true;
     submitBtn.textContent = 'جاري الإرسال...';
   });
 })();
 
 (function(){
-  var productSelect = document.getElementById('product');
-  var orderLinks = document.querySelectorAll('.order-link[data-product]');
-  orderLinks.forEach(function(link){
+  var DELIVERY_FEE = 400;
+  var cart = []; // { name, price }
+
+  var cartEmpty = document.getElementById('cartEmpty');
+  var cartItemsEl = document.getElementById('cartItems');
+  var cartField = document.getElementById('cartField');
+  var totalBox = document.getElementById('totalPriceBox');
+  var subtotalLabel = document.getElementById('subtotalLabel');
+  var totalLabel = document.getElementById('totalPriceLabel');
+  var totalField = document.getElementById('totalPriceField');
+
+  function renderCart(){
+    cartItemsEl.innerHTML = '';
+    if (cart.length === 0){
+      cartEmpty.style.display = 'block';
+      totalBox.style.display = 'none';
+      cartField.value = '';
+      totalField.value = '';
+      return;
+    }
+    cartEmpty.style.display = 'none';
+    var subtotal = 0;
+    var summaryParts = [];
+    cart.forEach(function(item, idx){
+      subtotal += item.price;
+      summaryParts.push(item.name + ' - ' + item.price + ' دج');
+      var row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML =
+        '<span class="cart-item-name">' + item.name + '</span>' +
+        '<span class="cart-item-price">' + item.price + ' دج</span>' +
+        '<button type="button" class="cart-item-remove" data-idx="' + idx + '">✕</button>';
+      cartItemsEl.appendChild(row);
+    });
+
+    var total = subtotal + DELIVERY_FEE;
+    subtotalLabel.textContent = subtotal + ' دج';
+    totalLabel.textContent = total + ' دج';
+    totalBox.style.display = 'flex';
+    cartField.value = summaryParts.join(' | ');
+    totalField.value = total + ' دج (منتجات: ' + subtotal + ' دج + توصيل: ' + DELIVERY_FEE + ' دج)';
+
+    cartItemsEl.querySelectorAll('.cart-item-remove').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = parseInt(btn.getAttribute('data-idx'), 10);
+        cart.splice(i, 1);
+        renderCart();
+      });
+    });
+  }
+
+  document.querySelectorAll('.order-link[data-name]').forEach(function(link){
     link.addEventListener('click', function(){
-      productSelect.value = link.getAttribute('data-product');
+      cart.push({
+        name: link.getAttribute('data-name'),
+        price: parseInt(link.getAttribute('data-price'), 10)
+      });
+      renderCart();
     });
   });
+
+  renderCart();
 })();
 
 (function(){
