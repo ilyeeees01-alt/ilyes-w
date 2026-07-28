@@ -1130,14 +1130,15 @@
 (function(){
   var cards = document.querySelectorAll('.product-card');
   var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry, i){
+    entries.forEach(function(entry){
+      var el = entry.target;
+      var siblings = Array.prototype.slice.call(el.parentNode.children);
+      var idx = siblings.indexOf(el);
+      el.style.transitionDelay = (idx % 3) * 0.08 + 's';
       if (entry.isIntersecting){
-        var el = entry.target;
-        var siblings = Array.prototype.slice.call(el.parentNode.children);
-        var idx = siblings.indexOf(el);
-        el.style.transitionDelay = (idx % 3) * 0.08 + 's';
         el.classList.add('in-view');
-        observer.unobserve(el);
+      } else {
+        el.classList.remove('in-view');
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
